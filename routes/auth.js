@@ -2,9 +2,10 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/:message', (req, res) => {
-    res.status(200).send(`Hello ${req.params.message}`);
-     
-})
+// controllers
+
+import {showMessage} from '../controllers/auth';
+
+router.get('/:message',showMessage)
 
 module.exports = router;
