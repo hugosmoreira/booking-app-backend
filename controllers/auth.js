@@ -1,4 +1,5 @@
 import User from '../models/user';
+import jwt from 'jsonwebtoken';
 
 
 
@@ -35,6 +36,16 @@ export const login = async (req, res) => {
           console.log("COMPARE PASSWORD IN LOGIN ERR", err)
           if(!match || err) return res.status(400).send('Invalid Password')
           console.log('GENERATING TOKEN');
+          let token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {
+            expiresIn: '7d'
+          })
+        return res.json({token, user: {
+            name: user.name,
+            email: user.email,
+            _id: user._id,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
+        }});
       })
     } catch (err) {
         console.log('LOGIN ERROR: ', err);
