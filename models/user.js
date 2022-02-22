@@ -22,7 +22,7 @@ const userSchema = new Schema({
         required: "Password is required"
 
     },
-    stripe_account_id: {},
+    stripe_account_id: "",
     stripe_seller: {},
     stripeSession: {},
 }, {timestamps: true});
