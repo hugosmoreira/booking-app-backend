@@ -23,11 +23,11 @@ router.get("/seller-hotels", requireSignin, sellerHotels);
 router.delete("/delete-hotel/:hotelId", requireSignin, hotelOwner, remove);
 router.get("/hotel/:hotelId", read);
 router.put(
-    "/update-hotel/:hotelId",
-    requireSignin,
-    hotelOwner,
-    formidable(),
-    update
-  );
+  "/update-hotel/:hotelId",
+  requireSignin,
+  hotelOwner,
+  formidable(),
+  update
+);
 
 module.exports = router;
