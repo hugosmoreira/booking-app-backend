@@ -99,3 +99,12 @@ export const update = async (req, res) => {
     res.status(400).send("Hotel update failed. Try again.");
   }
 };
+
+export const userHotelBookings = async (req, res) => {
+  const all = await Order.find({ orderedBy: req.user._id })
+    .select("session")
+    .populate("hotel", "-image.data")
+    .populate("orderedBy", "_id name")
+    .exec();
+  res.json(all);
+};
